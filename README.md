@@ -17,8 +17,6 @@ npm start
 npm test [to run tests -> this is precisely written for Postgres DB, so you might wanna change package.json test scripts for that.]
 If you want to remove CICD, just delete .github/workflows folder.
 ```
-### Note: As you can see here, CICD is not working here due to Github actions' issues, but you can take reference of this CICD logic to implement yours.
-#
 #
 # Thank you :)
 #
