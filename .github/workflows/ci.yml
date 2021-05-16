@@ -13,8 +13,8 @@ env:
   DB_DIALECT : postgres
   NODE_ENV : test
   APP_PORT : 4000
-  SECRET  : TOP_SECRET
-  ENCRYPTION_KEY: ${{secrets.ENCRYPTION_KEY}}
+  SECRET : TOP_SECRET
+  ENCRYPTION_KEY : ${{secrets.ENCRYPTION_KEY}}
   
 jobs:  
     
