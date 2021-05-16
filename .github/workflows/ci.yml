@@ -13,7 +13,7 @@ env:
   DB_DIALECT : postgres
   NODE_ENV : test
   APP_PORT : 4000
-  SECRET  : TOP_SECRET 
+  SECRET  : TOP_SECRET
   
 jobs:  
     
@@ -24,9 +24,9 @@ jobs:
       postgres:
         image: postgres:12
         env:
-          POSTGRES_USER: ${DB_USER}
-          POSTGRES_PASSWORD: ${DB_PASS}
-          POSTGRES_DB: ${DB_NAME}
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: testing
         ports:
           - 5432:5432
         options: >-
@@ -59,8 +59,7 @@ jobs:
         echo "NODE_ENV=${NODE_ENV}" >> .env
         echo "APP_PORT=${APP_PORT}" >> .env
         echo "SECRET=${SECRET}" >> .env
-
-    - run: sudo chmod ugoa+x *.sh      
+ 
     - run: sudo npm install --unsafe-perm
     - run: sudo npm run test
 
