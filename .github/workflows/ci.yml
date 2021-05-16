@@ -7,7 +7,7 @@ on:
 
 env:
   DB_USER : postgres
-  DB_PASS : 'postgres'
+  DB_PASS : postgres
   DB_NAME : testing
   DB_HOST : localhost
   DB_DIALECT : postgres
