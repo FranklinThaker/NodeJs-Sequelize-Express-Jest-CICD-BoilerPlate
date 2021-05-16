@@ -63,6 +63,7 @@ exports.login = async (req, res) => {
 
     return successResponse(req, res, data);
   } catch (error) {
+    console.log('🚀 TCL -> exports.login= -> error', error);
     return errorResponse(req, res, error.message);
   }
 };
