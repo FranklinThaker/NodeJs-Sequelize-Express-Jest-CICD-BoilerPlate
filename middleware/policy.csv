@@ -1,0 +1,4 @@
+role, url, method
+user, /api/v1/account/profile, GET
+user, /api/v1/account/users, GET
+user, /api/v1/account/users/:id, GET

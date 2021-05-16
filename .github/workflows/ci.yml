@@ -1,0 +1,63 @@
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  DB_USER : postgres
+  DB_PASS : ''
+  DB_NAME : testing
+  DB_HOST : localhost
+  DB_DIALECT : postgres
+  NODE_ENV : test
+  APP_PORT : 4000
+  SECRET  : TOP_SECRET 
+  
+jobs:  
+    
+  Any-Commits-To-Main-Branch:
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 15.x]
+  
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref : main # branch name on which this CI will run
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - run: |
+        touch .env
+        echo "DB_USER=${DB_USER}" >> .env
+        echo "DB_PASS=${DB_PASS}" >> .env
+        echo "DB_NAME=${DB_NAME}" >> .env
+        echo "DB_HOST=${DB_HOST}" >> .env
+        echo "DB_DIALECT=${DB_DIALECT}" >> .env
+        echo "NODE_ENV=${NODE_ENV}" >> .env
+        echo "APP_PORT=${APP_PORT}" >> .env
+        echo "SECRET=${SECRET}" >> .env
+
+    - run: sudo chmod ugoa+x *.sh
+    - run: sudo ./postgreSQL.sh
+    - run: sudo npm install --unsafe-perm
+    - run: sudo npm run test
+
+    # - name: Continous Code Delivery to Live Server
+    #   uses: appleboy/ssh-action@master
+    #   with:
+    #       host: ${{secrets.LIVE_SERVER_IP_ADDRESS}}
+    #       username: ubuntu
+    #       key: ${{secrets.SSH_PRIV_KEY}}
+    #       port: 22
+    #       script: |
+    #         cd NodeJs-Sequelize-Express-Jest-CICD-BoilerPlate            
+    #         sudo git pull
+  
