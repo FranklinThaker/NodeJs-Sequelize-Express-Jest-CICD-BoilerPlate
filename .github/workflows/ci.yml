@@ -7,7 +7,7 @@ on:
 
 env:
   DB_USER : postgres
-  DB_PASS : ''
+  DB_PASS : 'postgres'
   DB_NAME : testing
   DB_HOST : localhost
   DB_DIALECT : postgres
@@ -19,6 +19,21 @@ jobs:
     
   Any-Commits-To-Main-Branch:
     runs-on: ubuntu-18.04
+
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ${DB_USER}
+          POSTGRES_PASSWORD: ${DB_PASS}
+          POSTGRES_DB: ${DB_NAME}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     strategy:
       matrix:
@@ -45,8 +60,7 @@ jobs:
         echo "APP_PORT=${APP_PORT}" >> .env
         echo "SECRET=${SECRET}" >> .env
 
-    - run: sudo chmod ugoa+x *.sh
-    - run: sudo ./postgreSQL.sh
+    - run: sudo chmod ugoa+x *.sh      
     - run: sudo npm install --unsafe-perm
     - run: sudo npm run test
 
