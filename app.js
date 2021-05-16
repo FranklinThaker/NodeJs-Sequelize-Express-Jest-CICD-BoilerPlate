@@ -4,6 +4,7 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 
 const userRoutes = require('./routes/user.routes');
+
 const { errorHandler } = require('./middleware/errorHandler');
 
 const { TOO_MANY_REQUESTS } = require('./helpers/messages');
