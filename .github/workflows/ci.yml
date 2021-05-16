@@ -60,6 +60,7 @@ jobs:
         echo "NODE_ENV=${NODE_ENV}" >> .env
         echo "APP_PORT=${APP_PORT}" >> .env
         echo "SECRET=${SECRET}" >> .env
+        echo "ENCRYPTION_KEY=${ENCRYPTION_KEY}" >> .env
  
     - run: sudo npm install --unsafe-perm
     - run: sudo npm run test
