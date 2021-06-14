@@ -4,7 +4,7 @@
   "description": "Boilerplate for Any Node.js Project who wants to use any SQL DB with Sequelize-Express.js",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon -e js,ejs --max-http-header-size 15000 --max-old-space-size=2048 clusteredAPP.js",
+    "start": "nodemon -e js,ejs --max-http-header-size 15000 --max-old-space-size=2048 clusteredApp.js",
     "restart": "lsof -i:8080 | grep -v 'PID' | awk '{print $2}' | xargs kill -9 && nodemon --max-http-header-size 15000 --max-old-space-size=2048 app.js",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "pretest": "cross-env NODE_ENV=test npm run db:reset",
