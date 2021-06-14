@@ -5,7 +5,7 @@
             "script": "npm",
             "args": "start",
             "watch": true,
-            "ignore_watch": [ "node_modules" ],
+            "ignore_watch": [ "node_modules", "logs" ],
             "error_file": "./logs/err.log",
             "out_file": "./logs/out.log"
         }
