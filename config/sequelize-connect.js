@@ -7,7 +7,8 @@ let sequelize;
 
 exports.dbConnect = async () => {
   const env = process.env.NODE_ENV || 'development';
-  const config = require(path.join(__dirname, '../config/config.js'))[env];
+  let config = require(path.join(__dirname, '../config/config.js'))[env];
+  if (!config) config = require(path.join(__dirname, '../config/config.js')).development;
 
   if (config.use_env_variable) {
     sequelize = new Sequelize(process.env[config.use_env_variable], config);
