@@ -1,0 +1,13 @@
+{
+    "apps": [
+        {
+            "name": "nodejs-express-sequelize-boilerplate",
+            "script": "npm",
+            "args": "start",
+            "watch": true,
+            "ignore_watch": [ "node_modules" ],
+            "error_file": "./logs/err.log",
+            "out_file": "./logs/out.log"
+        }
+    ]
+}
