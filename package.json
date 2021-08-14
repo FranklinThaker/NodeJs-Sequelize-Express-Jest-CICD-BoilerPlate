@@ -4,8 +4,8 @@
   "description": "Boilerplate for Any Node.js Project who wants to use any SQL DB with Sequelize-Express.js",
   "main": "server.js",
   "scripts": {
-    "start": "node --max-http-header-size 15000 --max-old-space-size=2048 clusteredApp.js",
-    "restart": "lsof -i:8080 | grep -v 'PID' | awk '{print $2}' | xargs kill -9 && nodemon --max-http-header-size 15000 --max-old-space-size=2048 app.js",
+    "start": "node --max-http-header-size 15000 --max-old-space-size=2048 server.js",
+    "restart": "lsof -i:8080 | grep -v 'PID' | awk '{print $2}' | xargs kill -9 && nodemon --max-http-header-size 15000 --max-old-space-size=2048 server.js",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "pretest": "cross-env NODE_ENV=test npm run db:reset",
     "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create",
@@ -57,6 +57,7 @@
     "sequelize-cli": "^6.2.0",
     "simple-crypto-js": "^3.0.0",
     "socket.io": "^4.1.1",
+    "socket.io-redis": "^6.1.1",
     "uuid": "^8.3.2"
   }
 }

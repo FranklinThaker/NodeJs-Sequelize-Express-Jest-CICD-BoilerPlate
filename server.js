@@ -5,6 +5,7 @@ const http = require('http');
 const socketIO = require('socket.io');
 const fs = require('fs');
 const chalk = require('chalk');
+const sioRedis = require('socket.io-redis');
 
 const { UsersModel } = require('./models');
 
@@ -27,6 +28,10 @@ if (key && cert) {
 const io = socketIO(server, {
   origin: [`${process.env.FRONT_END_URL}:*`, 'https://localhost:*'],
 });
+
+if (process.env.NODE_ENV !== 'test') {
+  io.adapter(sioRedis({ host: 'localhost', port: 6379 }));
+}
 
 io.on('connection', (socket) => {
   socket.on('CLIENT_JOINED', async (data) => {
@@ -70,4 +75,10 @@ process.on('SIGTERM', () => {
   });
 });
 
-module.exports = server;
+if (process.env.NODE_ENV !== 'test') {
+  server.listen(process.env.APP_PORT || 4000, () => {
+    console.info(chalk.blue(`Server & Socket listening on port ${process.env.APP_PORT}!`));
+  });
+}
+
+module.exports = io;

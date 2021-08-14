@@ -18,12 +18,14 @@ npm test [to run tests -> this is precisely written for Postgres DB, so you migh
 If you want to remove CICD, just delete .github/workflows folder.
 ```
 #
-# How to start in production mode ?
+# How to manage in production mode ? [Create, delete, view logs, etc.]
 ```sh
-sudo npm i -g pm2
-sudo pm2 start production.json
-sudo pm2 startup systemd
-sudo pm2 save
+npm i pm2 -g
+pm2 start production.config.json
+pm2 startup systemd
+pm2 save
+pm2 delete all [to delete processed attached with pm2]
+pm2 logs [to view logs]
 ```
 
 # Thank you :)
